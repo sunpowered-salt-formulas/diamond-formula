@@ -1,0 +1,30 @@
+diamond:
+  config:
+    server:
+      handlers: 'diamond.handler.graphite.GraphiteHandler,'
+      user: 'graphite'
+      group: 'graphite'
+    collectors:
+      default:
+        interval: 10
+
+  collectors:
+    CPUCollector:
+      enabled: True
+    LoadAverageCollector:
+      enabled: True
+      byte_unit: byte
+    MemoryCollector:
+      enabled: True
+      path_suffix: ""
+      ttl_multiplier: 2
+      measure_collector_time: False
+      byte_unit: byte
+    NetworkCollector:
+      enabled: True
+  handlers:
+    GraphiteHandler:
+      host: localhost
+      port: 2003
+      timeout: 20
+      batch: 1

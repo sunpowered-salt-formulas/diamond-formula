@@ -1,0 +1,21 @@
+################################################################################
+# This file is managed by Saltstack!  Any changes will be overwritten
+# Diamond Configuration File
+################################################################################
+{%- macro render_section_dict(name, data, level=1)  %}
+{{ '['*level }}{{ name }}{{ ']'*level }}
+{%- for key, value in data.items()  %}
+{%- if value is mapping  %}
+{%- set new_level = level + 1 %}
+{{ render_section_dict(key, value, level=new_level) }}
+{%- else %}
+{{ key }} = {{ value }}
+{%- endif %}
+{%- endfor %}
+{%- endmacro %}
+
+{% for section in ['server', 'handlers', 'collectors', 'formatters', 'loggers', 'logger_root', 'handler_rotated_file', 'formatter_default'] %}
+#######################################################################
+#  Options for {{ section | title }}
+{{ render_section_dict(section, settings.get(section, {})) }}
+{% endfor %}

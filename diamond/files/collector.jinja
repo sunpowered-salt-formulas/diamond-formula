@@ -1,0 +1,7 @@
+################################################
+#  Warning.  This file is managed by Saltstack.
+#  Any edits can be overwritten at any time
+###############################################
+{%- for key, value in settings.items() %}
+{{ key }}={{ value }}
+{%- endfor %}
