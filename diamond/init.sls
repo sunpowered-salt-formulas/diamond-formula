@@ -32,10 +32,8 @@ diamond_deps:
       - python-configobj
 
 install_diamond:
-  cmd.run:
-    - name: 'pip install --upgrade diamond'
-    - cwd: /root
-    - user: root
+  pip.installed:
+    - name: diamond
 
 /etc/diamond/diamond.conf:
   file.managed:
