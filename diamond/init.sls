@@ -56,3 +56,10 @@ include:
     - user: root
     - group: root
     - mode: 644
+
+diamond_service:
+  service.running:
+    - name: diamond
+    - enable: True
+    - watch:
+      - file: /etc/init/diamond.conf
